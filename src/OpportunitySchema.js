@@ -1,5 +1,5 @@
 module.exports = (conn) => {
-  const JobOpportunitySchema = new conn.Schema({
+  const OpportunitySchema = new conn.Schema({
     address: {
       type: String,
       required: true,
@@ -40,6 +40,10 @@ module.exports = (conn) => {
       type: Date,
       require: true,
     },
+    status: {
+      type: Boolean,
+      required: true,
+    },
     employer: {
       type: conn.Schema.Types.ObjectId,
       ref: 'Employer',
@@ -52,9 +56,9 @@ module.exports = (conn) => {
     },
     process: {
       type: conn.Schema.Types.ObjectId,
-      ref: 'PlacementHiringProcess',
+      ref: 'HiringProcess',
       required: true,
     },
   });
-  return JobOpportunitySchema;
+  return OpportunitySchema;
 };
