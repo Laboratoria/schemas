@@ -9,6 +9,9 @@ const GraduateProfileEndorsementSchema = require('./src/GraduateProfileEndorseme
 const GraduateProfileLifeSkillSchema = require('./src/GraduateProfileLifeSkillSchema');
 const GraduateProfileProjectSchema = require('./src/GraduateProfileProjectSchema');
 const GraduateProfileSchema = require('./src/GraduateProfileSchema');
+const HiringProcessSchema = require('./src/HiringProcessSchema');
+const OpportunitySchema = require('./src/OpportunitySchema');
+const EmployerSchema = require('./src/EmployerSchema');
 const TopicSchema = require('./src/TopicSchema');
 const UserSchema = require('./src/UserSchema');
 
@@ -25,6 +28,9 @@ module.exports = conn => ({
   GraduateProfileLifeSkillSchema: GraduateProfileLifeSkillSchema(conn),
   GraduateProfileProjectSchema: GraduateProfileProjectSchema(conn),
   GraduateProfileSchema: GraduateProfileSchema(conn),
+  HiringProcessSchema: HiringProcessSchema(conn),
+  OpportunitySchema: OpportunitySchema(conn),
+  EmployerSchema: EmployerSchema(conn),
   TopicSchema: TopicSchema(conn),
   UserSchema: UserSchema(conn),
 });
