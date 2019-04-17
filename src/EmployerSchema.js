@@ -4,6 +4,13 @@ module.exports = (conn) => {
       type: conn.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
+      index: true,
+      unique: true,
+    },
+    organization: {
+      type: conn.Schema.Types.ObjectId,
+      ref: 'Organization',
+      required: true,
     },
     phone: {
       type: String,
@@ -13,16 +20,7 @@ module.exports = (conn) => {
       type: String,
       required: true,
     },
-    organization: {
-      type: conn.Schema.Types.ObjectId,
-      ref: 'Organization',
-      required: true,
-    },
-    jobOpportunity: {
-      type: conn.Schema.Types.ObjectId,
-      ref: 'JobOpportunity',
-      required: true,
-    },
+
   });
   return EmployerSchema;
 };
