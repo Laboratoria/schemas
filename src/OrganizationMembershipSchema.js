@@ -12,15 +12,13 @@ module.exports = (conn) => {
       ref: 'Organization',
       required: true,
     },
-    phone: {
-      type: String,
-      required: true,
-    },
     position: {
       type: String,
       required: true,
     },
-
+    phone: {
+      type: String,
+    },
   });
   return OrganizationMembershipSchema;
 };
