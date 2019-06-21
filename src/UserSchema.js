@@ -76,6 +76,7 @@ module.exports = (conn) => {
       enum: [
         // 'student',
         'admin',
+        'organization',
         // 'trainingManager',
         // 'jobPlacement',
         // 'coach',
