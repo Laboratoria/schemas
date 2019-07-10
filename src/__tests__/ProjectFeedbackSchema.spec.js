@@ -1,9 +1,10 @@
 const mongoose = require('mongoose/browser');
 const {
-  CohortSchema,
+  CohortProjectSchema,
+  CohortMembershipSchema,
   ProjectFeedbackSchema,
-  ProjectSchema,
-  ReviewerSurveySchema,
+  UserSchema,
+  ReviewAnswerSchema,
 } = require('../../')(mongoose);
 
 describe('ProjectFeedbackSchema', () => {
@@ -13,16 +14,15 @@ describe('ProjectFeedbackSchema', () => {
   });
 
   it('should validate example', (done) => {
-    const project = new mongoose.Document({}, ProjectSchema);
-    const cohort = new mongoose.Document({}, CohortSchema);
-    const reviewerSurvey = new mongoose.Document({}, ReviewerSurveySchema);
+    const cohortProject = new mongoose.Document({}, CohortProjectSchema);
+    const cohortMembership = new mongoose.Document({}, CohortMembershipSchema);
+    const createdBy = new mongoose.Document({}, UserSchema);
+    const reviewAnswer = new mongoose.Document({}, ReviewAnswerSchema);
 
     const projectFeedback = new mongoose.Document({
-      project: project._id,
-      cohort: cohort._id,
-      uid: '9x7YelqRH8hX3QRz0qV6IAhYlek1',
-      createdBy: '<UID>',
-      createdAt: new Date(),
+      cohortProject: cohortProject._id,
+      cohortMembership: cohortMembership._id,
+      createdBy: createdBy._id,
       rubric: '2',
       rubricResults: {
         logic: 5,
@@ -30,15 +30,9 @@ describe('ProjectFeedbackSchema', () => {
         communication: 4,
         github: 5,
       },
-      reviewerSurvey: reviewerSurvey._id,
-      reviewerSurveyResults: {
-        perception: 2,
-        soft: 'soft comment',
-        dropout: 3,
-        tech: 'tech comment',
-        engagement: 1,
-      },
-      notes: 'revisar esto:\n-\n-\n-',
+      reviewerSurveyResults: [
+        reviewAnswer._id,
+      ],
     }, ProjectFeedbackSchema);
 
     projectFeedback.validate((err) => {

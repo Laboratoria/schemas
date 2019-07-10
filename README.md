@@ -106,6 +106,18 @@ project.validate()
 * [`ProjectSchema`](./src/ProjectSchema.js)
 * [`ProjectFeedbackSchema`](./src/ProjectFeedbackSchema.js)
 * [`ReviewerSurveySchema`](./src/ReviewerSurveySchema.js)
+* [`ReviewQuestionSchema`](./src/ReviewQuestionSchema.js)
+* [`ReviewAnswerSchema`](./src/ReviewAnswerSchema.js)
+
+### AcademicProfile
+
+* [`AcademicProfileSchema`](./src/AcademicProfileSchema.js)
+* [`AcademicProfileTagSchema`](./src/AcademicProfileTagSchema.js)
+* [`TagSchema`](./src/TagSchema.js)
+* [`AcademicProfileEndorsementSchema`](./src/AcademicProfileEndorsementSchema.js)
+* [`EndorsmentSchema`](./src/EndorsmentSchema.js)
+* [`AcademicProfileCommentSchema`](./src/AcademicProfileCommentSchema.js)
+* [`EndorsmentSchema`](./src/EndorsmentSchema.js)
 
 ### Topics
 

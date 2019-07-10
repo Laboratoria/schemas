@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewQuestionSchema should fail validation when fields missing 1`] = `
+Object {
+  "id": [ValidatorError: Path \`id\` is required.],
+  "text": [ValidatorError: Path \`text\` is required.],
+  "type": [ValidatorError: Path \`type\` is required.],
+  "visibility": [ValidatorError: Path \`visibility\` is required.],
+}
+`;
+
+exports[`ReviewQuestionSchema should fail validation when question is missing id 1`] = `"Validation failed: id: Path \`id\` is required."`;
+
+exports[`ReviewQuestionSchema should fail validation when question options not a Array 1`] = `
+Object {
+  "visibility": [ValidatorError: Path \`visibility\` is required.],
+}
+`;
+
+exports[`ReviewQuestionSchema should fail validation when wrong type 1`] = `
+Object {
+  "type": [ValidatorError: \`other\` is not a valid enum value for path \`type\`.],
+}
+`;
