@@ -24,6 +24,9 @@ const TopicUnitSchema = require('./src/TopicUnitSchema');
 const TopicUnitPartSchema = require('./src/TopicUnitPartSchema');
 const UserSchema = require('./src/UserSchema');
 const UserActivityFeedEventSchemas = require('./src/UserActivityFeedEventSchemas');
+const ProgressSchema = require('./src/ProgressSchema');
+const ProgressUnitSchema = require('./src/ProgressUnitSchema');
+const ProgressPartSchema = require('./src/ProgressPartSchema');
 
 
 module.exports = (conn, document) => ({
@@ -54,4 +57,7 @@ module.exports = (conn, document) => ({
   TopicUnitPartSchema: TopicUnitPartSchema(conn, document || (typeof window !== 'undefined' ? window : {}).document),
   UserSchema: UserSchema(conn),
   UserActivityFeedEventSchemas: UserActivityFeedEventSchemas(conn),
+  ProgressSchema: ProgressSchema(conn),
+  ProgressUnitSchema: ProgressUnitSchema(conn),
+  ProgressPartSchema: ProgressPartSchema(conn),
 });

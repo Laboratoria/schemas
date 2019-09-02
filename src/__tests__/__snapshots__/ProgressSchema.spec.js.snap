@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressSchema should fail validation when fields missing 1`] = `
+Object {
+  "cohortTopic": [ValidatorError: Path \`cohortTopic\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
+}
+`;
