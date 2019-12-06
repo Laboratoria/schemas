@@ -1,5 +1,5 @@
 module.exports = (conn) => {
-  const AcademicProfileTagDeletedEventSchema = new conn.Schema({
+  const AcademicProfileTagRemovalEventSchema = new conn.Schema({
     removedBy: {
       type: conn.Schema.Types.ObjectId,
       ref: 'User',
@@ -17,7 +17,7 @@ module.exports = (conn) => {
   });
 
   // NOTE: The tests of this callback are the repository of models
-  AcademicProfileTagDeletedEventSchema.pre('save', function (next) {
+  AcademicProfileTagRemovalEventSchema.pre('save', function (next) {
     const { User } = conn.models;
 
     User.findById(this.removedBy)
@@ -30,5 +30,5 @@ module.exports = (conn) => {
       .catch(next);
   });
 
-  return AcademicProfileTagDeletedEventSchema;
+  return AcademicProfileTagRemovalEventSchema;
 };
