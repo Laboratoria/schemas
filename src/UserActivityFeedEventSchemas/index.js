@@ -1,8 +1,15 @@
 const AcademicProfileCommentEventSchema = require('./AcademicProfileCommentEventSchema');
+const AcademicProfileTagAssignedEventSchema = require('./AcademicProfileTagAssignedEventSchema');
+const AcademicProfileTagRemovalEventSchema = require('./AcademicProfileTagRemovalEventSchema');
 const ReviewAnswerEventSchema = require('./ReviewAnswerEventSchema');
 
 module.exports = (conn) => {
   const UserActivityFeedEventSchema = new conn.Schema({
+    user: {
+      type: conn.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -24,6 +31,8 @@ module.exports = (conn) => {
   return {
     UserActivityFeedEventSchema,
     AcademicProfileCommentEventSchema: AcademicProfileCommentEventSchema(conn),
+    AcademicProfileTagAssignedEventSchema: AcademicProfileTagAssignedEventSchema(conn),
+    AcademicProfileTagRemovalEventSchema: AcademicProfileTagRemovalEventSchema(conn),
     ReviewAnswerEventSchema: ReviewAnswerEventSchema(conn),
   };
 };
