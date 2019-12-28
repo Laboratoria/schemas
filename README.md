@@ -1,5 +1,8 @@
 # Laboratoria/schemas
 
+:warning: THIS REPO HAS BEEN ARCHIVED AND SCHEMAS HAVE BEEN MOVED TO
+[THE `models` REPO](https://github.com/Laboratoria/models/tree/master/src/schemas)
+
 
 [![Build Status](https://travis-ci.com/Laboratoria/schemas.svg?branch=master)](https://travis-ci.com/Laboratoria/schemas)
 
