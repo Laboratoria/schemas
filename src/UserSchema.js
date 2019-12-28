@@ -28,6 +28,7 @@
 // * `lifeSkills` are now in `GraduateProfileLifeSkillSchema`
 // * `recommendations` are now in `GraduateProfileEndorsementSchema`
 //
+const AcademicProfileSchema = require('./AcademicProfileSchema');
 
 module.exports = (conn) => {
   const UserSchema = new conn.Schema({
@@ -118,6 +119,10 @@ module.exports = (conn) => {
     // paymentStart: Date,
     // NOTE: ????
     // currentJob: String, // Reference to UserJob collection
+    academicProfile: AcademicProfileSchema(conn),
+  }, {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   });
 
 

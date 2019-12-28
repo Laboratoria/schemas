@@ -1,56 +1,33 @@
 const mongoose = require('mongoose/browser');
-const { ReviewerSurveySchema } = require('../../')(mongoose);
+const { ReviewerSurveySchema, ReviewQuestionSchema } = require('../../')(mongoose);
 
 describe('ReviewerSurveySchema', () => {
-  it('should fail validation when fields missing', () => {
+  it('should fail validation when missing fields are provided', () => {
     const doc = new mongoose.Document({}, ReviewerSurveySchema);
     expect(doc.validateSync().errors).toMatchSnapshot();
   });
 
-  it('should fail validation when multiple-choice question is missing options', () => {
+  it('should fail validation when version not semver compatible', () => {
+    const question = new mongoose.Document({}, ReviewQuestionSchema);
     const doc = new mongoose.Document({
-      questions: [{
-        type: 'multiple-choice',
-      }],
+      questions: [question._id],
+      version: 'foo',
     }, ReviewerSurveySchema);
+
     return doc.validate()
-      .catch(err => expect(err.message).toMatchSnapshot());
+      .catch(err => expect(err.errors.version.message).toBe('Invalid semver version foo'));
   });
 
-  it('should fail validation when question is missing slug', () => {
+  it('should successfully validate with proper values', (done) => {
+    const question = new mongoose.Document({}, ReviewQuestionSchema);
     const doc = new mongoose.Document({
-      questions: [{
-        type: 'multiple-choice',
-        options: 4,
-      }],
+      questions: [question._id],
+      version: '2.0.0',
     }, ReviewerSurveySchema);
-    return doc.validate()
-      .catch(err => expect(err.message).toMatchSnapshot());
-  });
 
-  it('should fail validation when wrong type', () => {
-    const reviewerSurvey = new mongoose.Document({
-      questions: [{ slug: 'bar', type: 'other' }],
-    }, ReviewerSurveySchema);
-    return reviewerSurvey.validate()
-      .catch(err => expect(err.errors).toMatchSnapshot());
-  });
-
-  it('should fail validation when question options not a number', () => {
-    const reviewerSurvey = new mongoose.Document({
-      questions: [{ slug: 'bar', type: 'multiple-choice', options: 'hola' }],
-    }, ReviewerSurveySchema);
-    return reviewerSurvey.validate()
-      .catch(err => expect(err.errors).toMatchSnapshot());
-  });
-
-  it('should validate good reviewer survey', () => {
-    const doc = new mongoose.Document({
-      questions: [
-        { slug: 'foo', type: 'open' },
-        { slug: 'bar', type: 'multiple-choice', options: 4 },
-      ],
-    }, ReviewerSurveySchema);
-    return doc.validate();
+    return doc.validate((err) => {
+      expect(err).toBe(null);
+      done();
+    });
   });
 });
